@@ -1,0 +1,75 @@
+{% extends 'connect.html' %}
+{%load static%}
+<html>
+<head>
+    {% block title %}
+    <title>
+        GET EMPLOYED
+    </title>
+    {% endblock title %}
+    <!--style-->
+    <link rel="stylesheet" href='{% static "main.css" %}'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+</head>
+<!--navbar-->
+<body>
+ <nav>
+    <div class="underline">
+    </div>
+    <div class="nav-center">
+        <!--nav-header-->
+        <div class="nav-header">
+            <div class="logo">
+               <img src="{% static '' %}" height="90px" width="90px"/>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="">Companies</a></li>
+                    <li><a href="">Vibes</a></li>
+                    <li><a href="">Profile</a></li>
+                    <li><a href="">Messages</a></li>
+                </ul>
+                <div class="loglink">
+                        {% if user.is_authenticated %}
+                         Hello, {{user.username}}.
+                        {% else %}
+                        This is your moment.
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+ <section class="heading">
+     <div class="title">{{job.job_title}}</div>
+     <div class="time-posted">Uploaded: today</div>
+     <div class="verification-status">{{verification_status}}</div>
+ </section>
+ <section class="left-side">
+     <section class="message">
+     {{job.job_description}}
+     </section>
+     <section class="requirements">
+         <div class="expectation"></div>
+         <div class="skills_required"></div>
+         <div class="qualification_needed"></div>
+     </section>
+     <section>
+         <div class="expected_date">
+             Delivery Time: 3 months
+         </div>
+     </section>
+     <section class="recent_activity">
+         <div class="recent_actv">
+             Number of Applications:
+             Number interviewed/interviewing:
+             hired:
+         </div>
+     </section>
+ </section>
+ <section class="right-side">
+    <div class="btn-apply"></div>
+    <div class="btn-save"></div>
+ </section>
+</body>
+</html>

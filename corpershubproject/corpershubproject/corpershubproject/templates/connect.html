@@ -1,0 +1,82 @@
+{%load static%}
+<html lang="en">
+<head>
+    {% block title %}
+    <title>
+        GET EMPLOYED
+    </title>
+    {% endblock title %}
+    <!--style-->
+    <link rel="stylesheet" href='{% static "main.css" %}'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+</head>
+<!--navbar-->
+<body>
+<nav>
+    <div class="underline">
+    </div>
+    <div class="nav-center">
+        <!--nav-header-->
+        <div class="nav-header">
+            <div class="logo">
+               <img src="{% static '' %}" height="90px" width="90px"/>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="">Companies</a></li>
+                    <li><a href="">Vibes</a></li>
+                    <li><a href="">Profile</a></li>
+                    <li><a href="">Messages</a></li>
+                </ul>
+                <div class="loglink">
+                        {% if user.is_authenticated %}
+                         Hello, {{user.username}}.
+                        {% else %}
+                        This is your moment.
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+ <section class="information">
+     <div class="information-center">
+         <img src="{% static '' %}" alt="corpersbackground" height="" width= "" />
+     </div>
+ </section>
+        {% block content %}
+ <ul>
+     {% for job in available_jobs %}
+     <a href="/{{ job.id }}">
+         <section class="content">
+            <div class="job-title">
+                    {{job.job_title}}
+            </div>
+            <div class="client">
+                {{job.client}}
+            </div>
+            <div class="client-location">
+                {{job.client_location}}
+            </div>
+            <div class="job-description">
+                {{job.job_description}}
+            </div>
+            <div class="job-req-due-del">
+                   <div class="job-requirements">Level Needed: Experienced</div>
+                   <div class="due-delivery-time">Delivery Time: 3 months</div>
+            </div>
+            <div class="type-of-job"></div>
+            <div class="verification-status">
+                    {{job.verification_status}}
+            </div>
+            <div class="date-uploaded">Uploaded: today</div>
+        </section>
+     </a>
+     {% endfor %}
+ </ul>
+        <section class="qualification"></section>
+        <section class="terminal"></section>
+        {% endblock content %}
+</body>
+</body>
+</html>

@@ -1,0 +1,43 @@
+{% load static %}
+<html lang="en">
+<head>
+    {% block title %}
+    <title>
+        CORPERSHUB
+    </title>
+    {% endblock title %}
+    <!--style-->
+    <link rel="stylesheet" href='{% static "main.css" %}'/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+</head>
+<body>
+    <div class="introduction">
+        <div class="profilepic">
+          <img src='{% static "coper.jfif" %}' title="profilepic" alt="profilepicture" class="profileimg"/>
+        </div>
+        <div class="bio">
+            <div class="hub_id">{{profile.corper_name}}</div>
+            <div class="location">{{profile.location}}</div>
+            <div class="horizontal_space"></div>
+            <div class="about_me">{{profile.about_me}}</div>
+        </div>
+    </div>
+    <div class="folders"></div>
+    <div class="gallery">
+            <div class="gallery_title">GALLERY</div>
+            <div class="gallery_line"></div>
+            <div class="gallery_proper">
+                {% for flex in common_flex %}
+                    {% if flex.picture %}
+                        <img src="{{ flex.picture.url }}" alt="Picture" class="profile_flex">
+                    {% endif %}
+                    {% if flex.video %}
+                        <video loop muted class="profile_flex"  controls>
+                            <source src="{{ flex.video.url }}" >
+                        </video>
+                    {% endif %}
+                {% endfor %}
+            </div>
+    </div>
+</body>
+</html>

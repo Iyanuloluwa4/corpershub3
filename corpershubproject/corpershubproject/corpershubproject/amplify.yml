@@ -1,0 +1,19 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - pip install -r requirements.txt  # Install dependencies
+        - python manage.py collectstatic --noinput  # Collect static files
+        - python manage.py migrate  # Apply database migrations
+    build:
+      commands:
+        - python manage.py test  # Optional: run tests
+  artifacts:
+    baseDirectory: /  # Root directory of your application
+    files:
+      - '**/*'  # Deploy all files
+  cache:
+    paths:
+      - venv/**/*
+      - node_modules/**/*
